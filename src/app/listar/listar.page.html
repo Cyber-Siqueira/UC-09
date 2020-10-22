@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>listar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>{{textoApresentacao}}</ion-list-header>
+    <ion-item-sliding *ngFor="let docinho of arrDocinhos; let i =index">
+      <ion-item>{{docinho.nome}}</ion-item>
+      <ion-item-options>
+        <ion-button color="warning" [routerLink]="['/cadastrar']">
+          <ion-icon name="create"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" (click)="excluirDocinho(i)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" [routerLink]="['/cadastrar']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
