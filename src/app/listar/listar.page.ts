@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { async } from '@angular/core/testing';
-import { AlertController } from '@ionic/angular' ;
+import { AlertController } from '@ionic/angular';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-listar',
@@ -9,17 +9,17 @@ import { AlertController } from '@ionic/angular' ;
 })
 export class ListarPage implements OnInit {
 
-    textoApresentacao = "Texto Qualquer";
-    arrDocinhos = [];
+  textoApresentacao = "Texto Qualquer";
+  arrDocinhos = [];
 
-  constructor(public alertController: AlertController) {
+  constructor(public alertController: AlertController, public AuthService: AuthService) {
 
 
 
   }
 
   ngOnInit() {
-    this.textoApresentacao = "Novo texto";
+    this.textoApresentacao = this.AuthService.emailUser;
 
     this.arrDocinhos.push({
       id: '01',
@@ -35,10 +35,10 @@ export class ListarPage implements OnInit {
     })
   }
 
-  async excluirDocinho(id){
+  async excluirDocinho(id) {
     const alert = await this.alertController.create({
       header: "confirmar exclusão",
-      message: "Tem certeza que deseja excluir?", 
+      message: "Tem certeza que deseja excluir?",
       buttons: [
         {
           text: 'Cancelar',
@@ -46,16 +46,16 @@ export class ListarPage implements OnInit {
           cssClass: 'Secundary'
         },
         {
-          
+
 
           text: "sim",
           handler: () => {
-            this.arrDocinhos.splice(id,1),
-            
-            this.textoApresentacao = "EXCLUIDO"
+            this.arrDocinhos.splice(id, 1),
+
+              this.textoApresentacao = "EXCLUIDO"
 
 
-            
+
           }
 
         }
@@ -66,6 +66,6 @@ export class ListarPage implements OnInit {
 
     })
     await alert.present();
-    
+
   }
 }

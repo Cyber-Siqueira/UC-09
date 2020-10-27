@@ -16,9 +16,8 @@ export class LoginPage implements OnInit {
   }
 
   logIn(email, password) {
-    this.authService.signIn(email.value, password.value)
+    this.authService.SignIn(email.value, password.value)
       .then((res) => {
-        this.router.navigate(["listar"]);
       })
       .catch((error) => {
         let msg = "";
