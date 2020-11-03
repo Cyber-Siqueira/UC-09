@@ -22,5 +22,6 @@ export class CrudService {
       peso: docinho.peso,
       tipo: docinho.tipo
     }
+    return this.ngStore.collection("Docinhos").add(docinhoData);
   }
 }
