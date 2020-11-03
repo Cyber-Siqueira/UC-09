@@ -12,5 +12,15 @@ export class CrudService {
 
   getDocinhosList(){
     const docinhoRef = this.ngStore.collection("docinhos");
+    return docinhoRef;
+  }
+
+  setDocinho(docinho){
+    const docinhoData: Docinhos = {
+      nome: docinho.nome,
+      sabor: docinho.sabor,
+      peso: docinho.peso,
+      tipo: docinho.tipo
+    }
   }
 }
