@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-
+import { Usuario } from '../interfaces/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(public ngFireAuth: AngularFireAuth, public router: Router) {
+  constructor(public ngFireAuth: AngularFireAuth, public router: Router, public ngFirestore: AngularFirestore) {
     this.ngFireAuth.authState.subscribe(user => {
       if (user) {
         localStorage.setItem("usuario", JSON.stringify(user))
@@ -20,7 +21,7 @@ export class AuthService {
     });
   }
 
-  get emailUser(): string{
+  get emailUser(): string {
     const user = JSON.parse(localStorage.getItem("usuario"));
     return user.email;
   }
@@ -34,5 +35,23 @@ export class AuthService {
     return this.ngFireAuth.signOut().then(() => {
       localStorage.removeItem("usuario");
     });
+  }
+
+  RegisterUser(email, password, usuario) {
+    return this.ngFireAuth.createUserWithEmailAndPassword(email, password).then((result) => {
+
+      this.createUser(result.user.uid, usuario)
+
+    })
+  }
+  createUser(uid, usuario) {
+    const userRef: AngularFirestoreDocument<any> = this.ngFirestore.doc('Usuario/' + uid);
+    const userData: Usuario = {
+      nome: usuario.nome,
+      idade: usuario.idade,
+      profissao: usuario.profissao
+    }
+
+    return userRef.set(userData, { merge: true });
   }
 }

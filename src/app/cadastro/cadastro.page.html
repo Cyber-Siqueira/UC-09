@@ -1,0 +1,44 @@
+<ion-content>
+  <form class="content-user">
+
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" #email required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" #senha required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input type="text" #nome required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Idade</ion-label>
+      <ion-input type="number" #idade required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Profissão</ion-label>
+      <ion-input type="text" #profissao required></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" size="large" (click)="cadastro(email, senha, nome, idade, profissao)" expand="block">
+          Cadastrar</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="button" size="small" [routerLink]="['/login']" expand="block" color="danger">Cancelar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>

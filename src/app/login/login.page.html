@@ -1,6 +1,5 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +8,7 @@
 
     <ion-item lines="full">
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" #email required></ion-input>
+      <ion-input type="email" #email required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
@@ -22,5 +21,12 @@
         <ion-button type="submit" size="large" (click)="logIn(email, password)" expand="block">Login</ion-button>
       </ion-col>
     </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="button" size="small" [routerLink]="['/cadastro']" expand="block">Crie sua conta</ion-button>
+      </ion-col>
+    </ion-row>
+
   </form>
 </ion-content>
