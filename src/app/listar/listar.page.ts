@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../shared/auth.service';
+import { CrudService } from '../shared/crud.service';
 
 @Component({
   selector: 'app-listar',
@@ -12,7 +13,7 @@ export class ListarPage implements OnInit {
   textoApresentacao = "Texto Qualquer";
   arrDocinhos = [];
 
-  constructor(public alertController: AlertController, public AuthService: AuthService) {
+  constructor(public alertController: AlertController, public AuthService: AuthService, public crudService: CrudService) {
 
 
 
@@ -21,18 +22,6 @@ export class ListarPage implements OnInit {
   ngOnInit() {
     this.textoApresentacao = this.AuthService.emailUser;
 
-    this.arrDocinhos.push({
-      id: '01',
-      nome: 'Brigadeiro'
-    })
-    this.arrDocinhos.push({
-      id: '02',
-      nome: 'Beijinho'
-    })
-    this.arrDocinhos.push({
-      id: '03',
-      nome: 'sorvete'
-    })
   }
 
   async excluirDocinho(id) {

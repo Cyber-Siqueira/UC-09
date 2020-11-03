@@ -10,12 +10,12 @@ export class CrudService {
 
   constructor(public ngStore: AngularFirestore) { }
 
-  getDocinhosList(){
+  getDocinhosList() {
     const docinhoRef = this.ngStore.collection("docinhos");
     return docinhoRef;
   }
 
-  setDocinho(docinho){
+  setDocinho(docinho) {
     const docinhoData: Docinhos = {
       nome: docinho.nome,
       sabor: docinho.sabor,
@@ -25,13 +25,18 @@ export class CrudService {
     return this.ngStore.collection("Docinhos").add(docinhoData);
   }
 
-  updateDocinho(uid, docinho){
+  updateDocinho(uid, docinho) {
     const docinhoData: Docinhos = {
       nome: docinho.nome,
       sabor: docinho.sabor,
       peso: docinho.peso,
       tipo: docinho.tipo
     }
-    const docinhoRef: AngularFirestoreDocument<any> = this.ngStore.doc("Docinhos/"+uid)
+    const docinhoRef: AngularFirestoreDocument<any> = this.ngStore.doc("Docinhos/" + uid);
+    return docinhoRef.update(docinhoData);
+  }
+  removeDocinho(uid) {
+    const docinhoRef: AngularFirestoreDocument<any> = this.ngStore.doc("Docinhos/" + uid);
+    return docinhoRef.delete;
   }
 }
