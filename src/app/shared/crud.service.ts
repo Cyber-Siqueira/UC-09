@@ -24,4 +24,14 @@ export class CrudService {
     }
     return this.ngStore.collection("Docinhos").add(docinhoData);
   }
+
+  updateDocinho(uid, docinho){
+    const docinhoData: Docinhos = {
+      nome: docinho.nome,
+      sabor: docinho.sabor,
+      peso: docinho.peso,
+      tipo: docinho.tipo
+    }
+    const docinhoRef: AngularFirestoreDocument<any> = this.ngStore.doc("Docinhos/"+uid)
+  }
 }
